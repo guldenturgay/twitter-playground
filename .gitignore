@@ -3,3 +3,4 @@ sentiment_analysis
 model_checkpoints
 .ipynb_checkpoints
 logs
+data_raw
