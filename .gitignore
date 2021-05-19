@@ -4,3 +4,4 @@ model_checkpoints
 .ipynb_checkpoints
 logs
 data_raw
+emotion_analysis
