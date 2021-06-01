@@ -6,9 +6,9 @@ logs
 data_raw
 emotion_analysis
 sentiment_analysis.ipynb 
-_scrape_home_timeline.ipynb
-_scrape_search_tweets.ipynb
-_classification_model.ipynb
-_get_datasets.ipynb
-_home_timeline_tweets.csv
-_tweets_df.csv
+scrape_home_timeline.ipynb
+scrape_search_tweets.ipynb
+classification_model.ipynb
+get_datasets.ipynb
+home_timeline_tweets.csv
+tweets_df.csv
