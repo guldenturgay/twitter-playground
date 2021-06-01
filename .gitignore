@@ -5,4 +5,4 @@ model_checkpoints
 logs
 data_raw
 emotion_analysis
-_sentiment_analysis.ipynb 
+sentiment_analysis.ipynb 
