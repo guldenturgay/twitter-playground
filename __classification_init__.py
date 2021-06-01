@@ -10,7 +10,6 @@ stopword = nltk.corpus.stopwords.words('english')
 model = load_model('emotion_analysis')
 
 
-
 def clean_text(text):
     
     # Replace or remove the characters 
@@ -50,6 +49,7 @@ emotion_label_dict = {6: 'neutral',
 
 
 def predict_emotion(text):
+    text = clean_text(text)
     probas = model.predict([text])
     pred = np.argmax(probas)
     pred = emotion_label_dict[pred]

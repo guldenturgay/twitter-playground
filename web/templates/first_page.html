@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+    <head>
+        <title>First app</title>
+            <link rel="stylesheet"
+            href="{{url_for('static', filename='style.css')}}">
+    </head>
+    <body>
+        {% from '_formhelpers.html' import render_field %}
+        <div>What's the Emotion?</div>
+        <form method=post action="/result">
+            <dl>
+                {{render_field(form.text_)}}
+            </dl>
+            <input type=submit value='Submit' name='submit_btn'>
+        </form>
+    </body>
+</html>
