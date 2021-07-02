@@ -2,7 +2,7 @@ pandas==1.0.3
 Flask==1.1.2
 nltk==3.5
 tweepy==3.10.0
-tensorflow == 2.4.2
+tensorflow-cpu == 2.4.2
 Keras==2.4.3
 autocorrect==2.5.0
 numpy==1.20.3
