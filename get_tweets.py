@@ -21,13 +21,26 @@ auth = tw.OAuthHandler(API_KEY, API_SECRET_KEY)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tw.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
+def on_status(status):
+    if hasattr(status, "retweeted_status"):  # Check if Retweet
+        try:
+            return status.retweeted_status.extended_tweet["full_text"]
+        except AttributeError:
+            return status.retweeted_status.full_text
+    else:
+        try:
+            return status.extended_tweet["full_text"]
+        except AttributeError:
+            return status.full_text
+
 def get_tweets():
     
-    timeline = api.home_timeline(count=50)
+    timeline = api.home_timeline(count=50,tweet_mode = 'extended', exclude_replies=True)
 
     tweets = []
+    
     for tweet in timeline:
-        text = api.get_status(id=tweet.id, tweet_mode = 'extended', lan='en').full_text
+        text = on_status(tweet)
         tweets.append(text)
     home_timeline_tweets = pd.DataFrame(tweets, columns=['tweet_text'])
 
@@ -90,3 +103,4 @@ def get_tweets():
 
     return home_timeline_tweets
         
+get_tweets()
