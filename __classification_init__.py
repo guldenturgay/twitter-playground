@@ -5,9 +5,19 @@ import re
 import string
 from keras.models import load_model
 import numpy as np
+from io import BytesIO
+from urllib.request import urlopen
+from zipfile import ZipFile
+import os
 stopword = nltk.corpus.stopwords.words('english')
 
-model = load_model('emotion_analysis')
+if not os.path.isdir('tmp'):
+    zipurl = 'https://getthemood-assets.s3.us-west-2.amazonaws.com/saved_model.zip'
+    with urlopen(zipurl) as zipresp:
+        with ZipFile(BytesIO(zipresp.read())) as zfile:
+            zfile.extractall('tmp')
+
+model = load_model('tmp')
 
 def predict_emotion(text):
 
