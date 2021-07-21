@@ -12,7 +12,7 @@ import os
 stopword = nltk.corpus.stopwords.words('english')
 
 
-model = load_model('test.h5')
+model = load_model('test.h5', custom_objects={'KerasLayer': hub.KerasLayer})
 
 def predict_emotion(text):
 
