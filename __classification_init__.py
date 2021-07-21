@@ -4,6 +4,7 @@ import nltk
 import re
 import string
 from keras.models import load_model
+import tensorflow_hub as hub
 import numpy as np
 from io import BytesIO
 from urllib.request import urlopen
