@@ -13,7 +13,7 @@ import os
 stopword = nltk.corpus.stopwords.words('english')
 
 model_url = 'https://getthemood-assets.s3.us-west-2.amazonaws.com/test.h5'
-model = load_model('model_url', custom_objects={'KerasLayer': hub.KerasLayer})
+model = load_model(model_url, custom_objects={'KerasLayer': hub.KerasLayer})
 
 def predict_emotion(text):
 
