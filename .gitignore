@@ -13,3 +13,6 @@ get_datasets.ipynb
 home_timeline_tweets.csv
 tweets_df.csv
 tmp
+nnlm-en-dim128-with-normalization_2.tar.gz
+convert_savedmodel_to_h5.ipynb
+test.h5

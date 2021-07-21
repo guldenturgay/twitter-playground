@@ -11,13 +11,8 @@ from zipfile import ZipFile
 import os
 stopword = nltk.corpus.stopwords.words('english')
 
-if not os.path.isdir('tmp'):
-    zipurl = 'https://getthemood-assets.s3.us-west-2.amazonaws.com/saved_model.zip'
-    with urlopen(zipurl) as zipresp:
-        with ZipFile(BytesIO(zipresp.read())) as zfile:
-            zfile.extractall('tmp')
 
-model = load_model('tmp')
+model = load_model('test.h5')
 
 def predict_emotion(text):
 
