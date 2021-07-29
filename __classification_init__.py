@@ -10,7 +10,8 @@ from io import BytesIO
 from urllib.request import urlopen
 from zipfile import ZipFile
 import os
-stopword = nltk.corpus.stopwords.words('english')
+
+stopword = nltk.download('stopwords')
 
 model = load_model('test.h5', custom_objects={'KerasLayer': hub.KerasLayer})
 
