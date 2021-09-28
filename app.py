@@ -21,8 +21,22 @@ def request_results():
 
 @app.route('/')
 def index():
+    return render_template('index.html')
+   
+
+@app.route('/result', methods=['POST'])
+def print_result():
     output = request_results()
     return render_template('result.html', output=output)
+
+
+
+
+
+#@app.route('/')
+#def index():
+    #output = request_results()
+    #return render_template('result.html', output=output)
    
 
 #@app.route('/result', methods=['GET'])
