@@ -1,11 +1,25 @@
 from flask import Flask, render_template, request 
+from flask_restful import Api
 from wtforms import Form, TextAreaField, validators
+from requests_oauthlib.oauth1_auth import Client
 import __classification_init__
 from __classification_init__ import predict_emotion
 import get_tweets
 from get_tweets import get_tweets
-app = Flask(__name__)
+from dotenv import load_dotenv
+import os
+from twitter import TwitterAuthenticate, TwitterCallback
 
+
+load_dotenv()
+API_KEY = os.getenv('API_KEY')
+API_SECRET_KEY = os.getenv('API_SECRET_KEY')
+
+app = Flask(__name__)
+api = Api(app)
+
+# Initialize Our OAuth Client
+oauth = Client(API_KEY, API_SECRET_KEY)
 
 def request_results():
     tweets = get_tweets()
@@ -22,6 +36,11 @@ def request_results():
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/welcome')
+def welcome():
+    return render_template('welcome.html')
+
    
 
 @app.route('/result', methods=['POST'])
@@ -44,6 +63,9 @@ def print_result():
     #if request.method == 'GET':
         #output = request_results()
         #return render_template('result.html', output=output)
+
+api.add_resource(TwitterAuthenticate, '/authenticate/twitter')
+api.add_resource(TwitterCallback, '/welcome') # This MUST match your Callback URL you set in the Twitter App Dashboard!!!
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=False)
