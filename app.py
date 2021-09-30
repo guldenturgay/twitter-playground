@@ -8,7 +8,7 @@ import get_tweets
 from get_tweets import get_tweets
 from dotenv import load_dotenv
 import os
-from twitter import TwitterAuthenticate, TwitterCallback
+
 
 
 load_dotenv()
@@ -19,7 +19,8 @@ app = Flask(__name__)
 api = Api(app)
 
 # Initialize Our OAuth Client
-oauth = Client(API_KEY, API_SECRET_KEY)
+oauth = Client(API_KEY, client_secret=API_SECRET_KEY)
+from twitter import TwitterAuthenticate, TwitterCallback
 
 def request_results():
     tweets = get_tweets()
