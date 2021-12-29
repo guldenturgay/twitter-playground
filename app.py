@@ -15,14 +15,17 @@ load_dotenv()
 API_KEY = os.getenv('API_KEY')
 API_SECRET_KEY = os.getenv('API_SECRET_KEY')
 
+
 app = Flask(__name__)
 api = Api(app)
 
 # Initialize Our OAuth Client
 oauth = Client(API_KEY, client_secret=API_SECRET_KEY)
+
 from twitter import TwitterAuthenticate, TwitterCallback
 
-def request_results():
+
+"""def request_results():
     tweets = get_tweets()
     tweets = tweets.tweet_text
     predictions=[]
@@ -33,7 +36,7 @@ def request_results():
         emotion = max(set(predictions), key = predictions.count)
     return emotion
 
-
+"""
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -42,14 +45,14 @@ def index():
 def welcome():
     return render_template('welcome.html')
 
-   
+"""
 
 @app.route('/result', methods=['POST'])
 def print_result():
     output = request_results()
     return render_template('result.html', output=output)
 
-
+"""
 
 
 
