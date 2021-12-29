@@ -12,8 +12,8 @@ import os
 
 
 load_dotenv()
-API_KEY = os.getenv('API_KEY')
-API_SECRET_KEY = os.getenv('API_SECRET_KEY')
+#API_KEY = os.getenv('API_KEY')
+#API_SECRET_KEY = os.getenv('API_SECRET_KEY')
 
 
 app = Flask(__name__)
