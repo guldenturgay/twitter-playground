@@ -12,8 +12,8 @@ import os
 
 
 load_dotenv()
-#API_KEY = os.getenv('API_KEY')
-#API_SECRET_KEY = os.getenv('API_SECRET_KEY')
+API_KEY = os.getenv('API_KEY')
+API_SECRET_KEY = os.getenv('API_SECRET_KEY')
 
 
 app = Flask(__name__)
@@ -37,9 +37,15 @@ from twitter import TwitterAuthenticate, TwitterCallback
     return emotion
 
 """
+
+class CompareForm(Form):
+    username = TextAreaField('', [validators.DataRequired()])
+    password = TextAreaField('', [validators.DataRequired()])
+
 @app.route('/')
 def index():
-    return render_template('index.html')
+    form = CompareForm(request.form)
+    return render_template('first_page.html', form=form)
 
 @app.route('/welcome')
 def welcome():

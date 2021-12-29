@@ -7,10 +7,11 @@
     </head>
     <body>
         {% from '_formhelpers.html' import render_field %}
-        <div>What's the Emotion?</div>
+        <div>Find the words</div>
         <form method=post action="/result">
             <dl>
-                {{render_field(form.text_)}}
+                {{render_field(form.username)}}
+                {{render_field(form.password)}}
             </dl>
             <input type=submit value='Submit' name='submit_btn'>
         </form>
