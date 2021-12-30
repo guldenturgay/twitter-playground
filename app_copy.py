@@ -11,16 +11,24 @@ import requests
 from dotenv import load_dotenv
 import os
 
+load_dotenv()
+API_KEY = os.getenv('API_KEY')
+API_SECRET_KEY = os.getenv('API_SECRET_KEY')
+
 # Create A Config To Store Values
 config = {
-    'twitter_consumer_key': 'ENTER TWITTER CONSUMER KEY',
-    'twitter_consumer_secret': 'ENTER TWITTER CONSUMER SECRET'
+    'twitter_consumer_key': API_KEY,
+    'twitter_consumer_secret': API_SECRET_KEY
 }
-
 
 
 app = Flask(__name__)
 api = Api(app)
+
+@app.route('/welcome')
+def welcome():
+    form = CompareForm(request.form)
+    return render_template('first_page.html', form=form)
 
 # Initialize Our OAuth Client
 oauth = Client(config['twitter_consumer_key'], client_secret=config['twitter_consumer_secret'])
