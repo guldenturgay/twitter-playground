@@ -11,18 +11,19 @@ import requests
 from dotenv import load_dotenv
 import os
 
+# Create A Config To Store Values
+config = {
+    'twitter_consumer_key': 'ENTER TWITTER CONSUMER KEY',
+    'twitter_consumer_secret': 'ENTER TWITTER CONSUMER SECRET'
+}
 
-load_dotenv()
-API_KEY = os.getenv('API_KEY')
-API_SECRET_KEY = os.getenv('API_SECRET_KEY')
 
 
 app = Flask(__name__)
 api = Api(app)
 
 # Initialize Our OAuth Client
-oauth = Client(API_KEY, client_secret=API_SECRET_KEY)
-
+oauth = Client(config['twitter_consumer_key'], client_secret=config['twitter_consumer_secret'])
 
 # We have to create our initial endpoint to login with twitter
 class TwitterAuthenticate(Resource):
@@ -66,16 +67,7 @@ class TwitterCallback(Resource):
         # ....
         return redirect('http://getthemood.gulden.me/welcome', 302)
 
-class CompareForm(Form):
-    username = TextAreaField('', [validators.DataRequired()])
-    password = TextAreaField('', [validators.DataRequired()])
 
-
-@app.route('/welcome')
-def welcome():
-    form = CompareForm(request.form)
-    return render_template('first_page.html', form=form)
-    return render_template('welcome.html')
 
 
 api.add_resource(TwitterAuthenticate, '/authenticate/twitter')
