@@ -24,8 +24,11 @@ config = {
 
 app = Flask(__name__)
 api = Api(app)
+class CompareForm(Form):
+    username = TextAreaField('', [validators.DataRequired()])
+    password = TextAreaField('', [validators.DataRequired()])
 
-@app.route('/')
+@app.route('/welcome')
 def welcome():
     form = CompareForm(request.form)
     return render_template('first_page.html', form=form)
