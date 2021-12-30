@@ -25,7 +25,7 @@ config = {
 app = Flask(__name__)
 api = Api(app)
 
-@app.route('/welcome')
+@app.route('/')
 def welcome():
     form = CompareForm(request.form)
     return render_template('first_page.html', form=form)
