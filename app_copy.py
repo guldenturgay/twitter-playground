@@ -4,13 +4,13 @@ import os
 from dotenv import load_dotenv
 
 
-app = Flask(__name__)
+app_copy = Flask(__name__)
 
 load_dotenv()
 CLIENT_ID = os.environ.get('CLIENT_ID')
 CLIENT_SECRET = os.environ.get('CLIENT_SECRET')
  
-app.secret_key = '\xfd{H\xe5<\x95\xf9\xe3\x96.5\xd1\x01O<\
+app_copy.secret_key = '\xfd{H\xe5<\x95\xf9\xe3\x96.5\xd1\x01O<\
 !\xd5\xa2\xa0\x9fR"\xa1\xa8'
  
 '''
@@ -21,14 +21,14 @@ app.secret_key = '\xfd{H\xe5<\x95\xf9\xe3\x96.5\xd1\x01O<\
     don't accept 127.0.0.1 / localhost
 '''
  
-app.config['SERVER_NAME'] = 'http://getthemood.gulden.me/welcome'
+app_copy.config['SERVER_NAME'] = 'http://getthemood.gulden.me/welcome'
 oauth = OAuth(app)
 
-@app.route('/')
+@app_copy.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/twitter/')
+@app_copy.route('/twitter/')
 def twitter():
    
     # Twitter Oauth Config
@@ -49,7 +49,7 @@ def twitter():
     redirect_uri = url_for('twitter_auth', _external=True)
     return oauth.twitter.authorize_redirect(redirect_uri)
  
-@app.route('/twitter/auth/')
+@app_copy.route('/twitter/auth/')
 def twitter_auth():
     token = oauth.twitter.authorize_access_token()
     resp = oauth.twitter.get('account/verify_credentials.json')
@@ -58,4 +58,4 @@ def twitter_auth():
     return redirect('/')
  
 if __name__ == "__main__":
-    app.run(debug=True)
+    app_copy.run(debug=True)
