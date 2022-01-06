@@ -21,7 +21,7 @@ app.secret_key = '\xfd{H\xe5<\x95\xf9\xe3\x96.5\xd1\x01O<\
     don't accept 127.0.0.1 / localhost
 '''
  
-app.config['SERVER_NAME'] = 'https://www.gulden.me/welcome/'
+app.config['SERVER_NAME'] = 'localhost:5000'
 oauth = OAuth(app)
 
 @app.route('/')
